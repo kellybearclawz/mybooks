@@ -21,7 +21,7 @@ async function renderBooks(data) {
   }
 
   // Create jump links
-  const years = Object.keys(booksByYear).sort();
+  const years = Object.keys(booksByYear).sort((a, b) => b - a);
   const yearLinksDiv = document.createElement('div');
   yearLinksDiv.className = 'year-links';
   yearLinksDiv.innerHTML = years.map(y => `<a href="#year-${y}">${y}</a>`).join(' | ');
@@ -47,7 +47,7 @@ async function renderBooks(data) {
       bookDiv.style.animationDelay = `${index * 0.1}s`;
 
       bookDiv.innerHTML = `
-        <img src="${coverUrl}" alt="Cover of ${book.Title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/128x193.png?text=No+Cover';" />
+        <img src="${coverUrl}" alt="Cover of ${book.Title}" onerror="this.onerror=null;this.src='https://kellybearclawz.github.io/mybooks/default-cover.jpg';" />
         <div>
           <p><strong>${book.Title}</strong><br>
           by ${book.Author}<br>
