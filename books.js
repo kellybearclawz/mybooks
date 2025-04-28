@@ -40,14 +40,14 @@ async function renderBooks(data) {
       const isbn = cleanISBN(book.ISBN);
       const coverUrl = isbn
         ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
-        : '/mybooks/default-cover.jpg';
+        : 'https://kellybearclawz.github.io//bookclub/default-cover.jpg';
 
       const bookDiv = document.createElement('div');
       bookDiv.className = 'book-card fade-in';
       bookDiv.style.animationDelay = `${index * 0.1}s`;
 
       bookDiv.innerHTML = `
-        <img src="${coverUrl}" alt="Cover of ${book.Title}" onerror="this.onerror=null;this.src='/mybooks/default-cover.jpg';" />
+        <img src="${coverUrl}" alt="Cover of ${book.Title}" onerror="this.onerror=null;this.src='https://kellybearclawz.github.io//bookclub/default-cover.jpg';" />
         <div>
           <p><strong>${book.Title}</strong><br>
           by ${book.Author}<br>
@@ -80,8 +80,12 @@ window.addEventListener('DOMContentLoaded', () => {
     download: true,
     header: true,
     complete: function(results) {
-      const cleanedData = results.data.filter(book => book['Title'] && book['Date Read']);
-      renderBooks(cleanedData);
+     const cleanedData = results.data.filter(book => 
+      book['Title'] && 
+      book['Date Read'] && 
+      book['Exclusive Shelf'] === 'read'
+);
+
     }
   });
 });
