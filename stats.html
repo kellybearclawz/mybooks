@@ -1,0 +1,37 @@
+<!-- stats.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="stats.js"></script>
+    
+  <title>Book Stats</title>
+    
+  <!-- Specify the favicon location -->
+  <link rel="icon" type="image/x-icon" href="/mybooks/favicon.ico">
+  <link rel="stylesheet" href="style.css" />   
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="books.html">Books</a> |
+    <a href="stats.html">Stats</a>
+    <!--<a href="about.html">About</a>-->
+  </nav>
+  
+  <main>
+    <h1>Sub-Genre Breakdown</h1>
+    <div class="chart-container">
+      <canvas id="subgenreChart"></canvas>
+    </div>
+    <h1>Book Breakdown</h1>
+    <div id="books-container"></div>
+
+  </main>
+  
+</body>
+</html>
