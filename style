@@ -1,0 +1,248 @@
+/* style.css */
+body {
+  font-family: 'Georgia', serif;
+  background-color: #fff8f0;
+  color: #4a3f35;
+  margin: 0;
+  padding: 0;
+}
+
+.sub-header {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: #5d3a00;
+    text-align: center;
+}
+
+
+nav {
+  background-color: #f4e4d4;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  border-bottom: 2px solid #e0cfc2;
+  font-size: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #5e4b3c;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+main {
+  padding: 1.5rem;
+  max-width: 100%;
+  margin: auto;
+}
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.book-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  width: 300px;
+}
+
+.book-card img {
+    width: 128px;
+    height: 193px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#bookshelf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/*.book-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 300px; /* Adjust this width as needed */
+}*/
+
+#bookshelf div {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-direction: row;
+  width: 260px;
+  box-sizing: border-box;
+   width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  #bookshelf {
+    flex-direction: row;
+    align-items: center;
+  }
+
+ /* #bookshelf div {
+   
+  }*/
+
+  nav {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* Year filter links */
+.year-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+}
+
+.year-nav a {
+  text-decoration: none;
+  color: #5e4b3c;
+  background-color: #f4e4d4;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.year-nav a:hover {
+  background-color: #fce8d9;
+}
+
+.year-links {
+  margin: 1rem auto;
+  text-align: center;
+  font-size: 2rem;
+  padding: 0.5rem 0;
+}
+
+.year-links a {
+  color: #5e4b3c;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.year-links a:hover {
+  color: #a87d5d;
+}
+
+
+.back-to-top {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+.back-to-top a {
+  color: #7c5e44;
+  text-decoration: none;
+}
+
+.back-to-top a:hover {
+  text-decoration: underline;
+}
+
+
+/* Jump to top link */
+#top-link {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: #f4e4d4;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: #5e4b3c;
+  font-weight: bold;
+  display: none;
+  z-index: 1000;
+}
+
+#top-link.show {
+  display: block;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-top: 2rem;
+  color: #5e4b3c;
+  background-color: #f4e4d4;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border-bottom: 2px solid #e0cfc2;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+  section h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
+.chart-container {
+  width: 90%;
+  max-width: 600px;
+  height: 400px;
+  background: #f9f5f0; /* Soft cream background */
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin: 2rem auto; /* Center with space around */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 12px;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
