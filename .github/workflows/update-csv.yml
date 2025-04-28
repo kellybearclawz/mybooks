@@ -1,0 +1,30 @@
+name: Update CSV
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+
+jobs:
+  update-csv:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout main repository
+      uses: actions/checkout@v2
+
+    - name: Checkout CSV repository
+      uses: actions/checkout@v2
+      with:
+        repository: user/csv-repo
+        path: path/to/csv
+
+    - name: Copy CSV file
+      run: cp path/to/csv/file.csv path/to/main-repo/file.csv
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add path/to/main-repo/file.csv
+        git commit -m 'Update CSV file'
+        git push
