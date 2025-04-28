@@ -1,4 +1,4 @@
-function getMeetingYear(dateString) {
+function getReadYear(dateString) {
   const date = new Date(dateString);
   return date.getFullYear();
 }
@@ -10,10 +10,10 @@ function cleanISBN(isbn) {
 async function renderBooks(data) {
   const shelf = document.getElementById('bookshelf');
 
-  // Group books by meeting year
+  // Group books by read year
   const booksByYear = {};
   for (const book of data) {
-    const year = getMeetingYear(book['Meeting Date']);
+    const year = getReadYear(book['Date Read']);
     if (!booksByYear[year]) {
       booksByYear[year] = [];
     }
@@ -40,7 +40,7 @@ async function renderBooks(data) {
       const isbn = cleanISBN(book.ISBN);
       const coverUrl = isbn
         ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
-        : 'https://kellybearclawz.github.io//bookclub/default-cover.jpg';
+        : 'https://kellybearclawz.github.io/mybooks/default-cover.jpg';
 
       const bookDiv = document.createElement('div');
       bookDiv.className = 'book-card fade-in';
@@ -51,7 +51,7 @@ async function renderBooks(data) {
         <div>
           <p><strong>${book.Title}</strong><br>
           by ${book.Author}<br>
-          Meeting: ${book['Meeting Date']}</p>
+          Date Read: ${book['Date Read']}</p>
           <p><a href="${book['Goodreads URL']}" target="_blank">Goodreads Link</a></p>
         </div>
       `;
@@ -80,7 +80,7 @@ window.addEventListener('DOMContentLoaded', () => {
     download: true,
     header: true,
     complete: function(results) {
-      const cleanedData = results.data.filter(book => book['Title'] && book['Meeting Date']);
+      const cleanedData = results.data.filter(book => book['Title'] && book['Date Read']);
       renderBooks(cleanedData);
     }
   });
