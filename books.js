@@ -76,7 +76,7 @@ async function renderBooks(data) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  Papa.parse("Book Club - Books Read_ISBN.csv", {
+  Papa.parse("goodreads_library_export.csv", {
     download: true,
     header: true,
     complete: function(results) {
