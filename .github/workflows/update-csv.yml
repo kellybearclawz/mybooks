@@ -1,30 +1,32 @@
-name: Update CSV
+name: Update File Workflow
 
 on:
-  schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight
+  push:
+    branches:
+      - main
 
 jobs:
-  update-csv:
+  update-file:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout main repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Checkout CSV repository
-      uses: actions/checkout@v2
-      with:
-        repository: user/csv-repo
-        path: path/to/csv
+      - name: Update target file
+        run: |
+          cp "bookclub/Book Club - Books Read_ISBN.csv" "mybooks/Book Club - Books Read_ISBN.csv" # From path followed by the copy to path
+        shell: bash
 
-    - name: Copy CSV file
-      run: cp path/to/csv/file.csv path/to/main-repo/file.csv
-
-    - name: Commit changes
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-        git add path/to/main-repo/file.csv
-        git commit -m 'Update CSV file'
-        git push
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "kellybearclawz"
+          git config --local user.email "klbercaw@gmail.com"
+          git add "mybooks/Book Club - Books Read_ISBN.csv"
+          git commit -m "Update target file"
+          git push
+        shell: bash
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Use GITHUB_TOKEN to authenticate
+          force: true
