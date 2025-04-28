@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Book Club</title>
+  <title>Bearclawz Books</title>
   <!-- Specify the favicon location -->
   <link rel="icon" type="image/x-icon" href="/bookclub/favicon.ico">
   <link rel="stylesheet" href="style.css" />
@@ -15,7 +15,7 @@
     <!--<a href="about.html">About</a>-->
   </nav>
 <main> 
-  <h1>Books We've Read</h1>
+  <h1>Books Read</h1>
   <div id="year-links" class="year-links"></div>
   <div id="bookshelf" style="padding: 1rem;"></div>
 </main>
@@ -25,7 +25,7 @@
   <script src="books.js"></script>
 
   <footer>
-    <p>&copy; 2025 Book Club</p>
+    <p>&copy; Bearclawz Books</p>
   </footer>
 </body>
 </html>
