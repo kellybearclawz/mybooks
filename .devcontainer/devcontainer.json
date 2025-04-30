@@ -1,0 +1,12 @@
+{
+  "name": "Goodreads Enrichment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {},
+  "postCreateCommand": "pip install -r .devcontainer/requirements.txt",
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": ["ms-python.python"]
+    }
+  }
+}
