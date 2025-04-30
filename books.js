@@ -76,7 +76,7 @@ async function renderBooks(data) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  Papa.parse("goodreads_fully_enriched.csv", {
+  Papa.parse("goodreads_enriched_google.csv", {
     download: true,
     header: true,
     complete: function(results) {
