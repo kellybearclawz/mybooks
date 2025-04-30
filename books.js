@@ -76,14 +76,13 @@ async function renderBooks(data) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  Papa.parse("goodreads_library_export.csv", {
+  Papa.parse("goodreads_fully_enriched.csv", {
     download: true,
     header: true,
     complete: function(results) {
      const cleanedData = results.data.filter(book => 
       book['Title'] && 
-      book['Date Read'] && 
-      book['Exclusive Shelf'] === 'read'
+      book['Date Read']
 );
 
     }
