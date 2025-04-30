@@ -76,7 +76,7 @@ async function renderBooks(data) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  Papa.parse("goodreads_enriched_google.csv", {
+  Papa.parse("goodreads_fully_enriched.csv", {
     download: true,
     header: true,
     complete: function(results) {
@@ -84,6 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
       book['Title'] && 
       book['Date Read']
 );
+      renderBooks(cleanedData); // Call renderBooks here!
 
     }
   });
