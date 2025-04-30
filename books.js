@@ -3,8 +3,8 @@ function getReadYear(dateString) {
   return date.getFullYear();
 }
 
-function cleanISBN(isbn) {
-  return isbn?.replace(/[^0-9Xx]/g, '');
+function cleanISBN(isbn13) {
+  return isbn13?.replace(/[^0-9Xx]/g, '');
 }
 
 async function renderBooks(data) {
