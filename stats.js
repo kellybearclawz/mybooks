@@ -55,7 +55,7 @@ function generateChart(data, label, title, elementId) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    Papa.parse("goodreads_library_export.csv", {
+    Papa.parse("goodreads_fully_enriched.csv", {
         download: true,
         header: true,
         complete: function(results) {
@@ -93,7 +93,7 @@ async function displayBooks(genre) {
                 const isbn = book.ISBN?.replace(/[^0-9Xx]/g, ''); // Clean up the ISBN just in case
                 const coverUrl = isbn 
                     ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` 
-                    : 'https://kellybearclawz.github.io//bookclub/default-cover.jpg'; // fallback image
+                    : 'https://kellybearclawz.github.io//mybooks/default-cover.jpg'; // fallback image
                 bookDiv.className = 'book-card fade-in';
                 bookDiv.style.animationDelay = `${index * 0.1}s`; // Stagger animation
                 bookDiv.innerHTML = `
