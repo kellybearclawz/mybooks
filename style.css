@@ -38,6 +38,41 @@ main {
   margin: auto;
 }
 
+/* Updated CSS here for elegance. */
+
+.book-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.book-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background-color: #fff;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.book-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.book-card div {
+  margin-top: 1rem;
+}
+
+/*
 .book-container {
   display: flex;
   flex-wrap: wrap;
@@ -61,6 +96,7 @@ main {
     object-fit: cover;
     border-radius: 8px;
 }
+*/
 
 #bookshelf {
   display: flex;
@@ -68,8 +104,6 @@ main {
   gap: 1rem;
   justify-content: center;
 }
-
-
 
 #bookshelf div {
   background-color: #fff;
