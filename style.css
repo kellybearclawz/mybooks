@@ -38,13 +38,20 @@ main {
   margin: auto;
 }
 
-/* Updated CSS here for elegance. */
+/* Updating to find the perfect placement. 
 
 .book-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   padding: 1rem;
+} */
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .book-card {
