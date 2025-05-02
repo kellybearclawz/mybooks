@@ -1,12 +1,26 @@
+/**
+ * Retrieves the year from a date string.
+ * @param {string} dateString - The date string (e.g., "2023-10-26").
+ * @returns {number} The year (e.g., 2023).
+ */
 function getReadYear(dateString) {
   const date = new Date(dateString);
   return date.getFullYear();
 }
 
+/**
+ * Cleans up an ISBN-13 string by removing non-numeric characters and 'X'.
+ * @param {string} isbn13 - The ISBN-13 string.
+ * @returns {string} The cleaned ISBN-13 string.
+ */
 function cleanISBN(isbn13) {
   return isbn13?.replace(/[^0-9Xx]/g, '');
 }
 
+/**
+ * Renders the book data onto the page, organized by year.
+ * @param {Array<object>} data - An array of book objects.
+ */
 async function renderBooks(data) {
   const shelf = document.getElementById('bookshelf');
 
@@ -76,15 +90,20 @@ async function renderBooks(data) {
   shelf.appendChild(topLink);
 }
 
+/**
+ * Sets up the event listener for the rating filter dropdown.
+ * @param {Array<object>} cleanedData - The cleaned book data.
+ */
 function setupRatingFilter(cleanedData) {
-  const ratingSelect = document.getElementById('ratingFilter');
-  ratingSelect.addEventListener('change', () => {
-    const minRating = parseInt(ratingSelect.value, 10);
-    const filtered = cleanedData.filter(book => parseFloat(book['My Rating']) >= minRating);
-    renderBooks(filtered);
-  });
+    const ratingSelect = document.getElementById('ratingFilter');
+    ratingSelect.addEventListener('change', () => {
+        const minRating = parseInt(ratingSelect.value, 10);
+        const filtered = cleanedData.filter(book => parseInt(book['My Rating'], 10) >= minRating);
+        renderBooks(filtered);
+    });
 }
 
+// Parse the CSV file and render the books
 Papa.parse("goodreads_fully_enriched.csv", {
   download: true,
   header: true,
