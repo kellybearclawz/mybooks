@@ -70,7 +70,7 @@ main {
   margin-top: 1rem;
 }
 
-/*#bookshelf {
+#bookshelf {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -89,8 +89,7 @@ main {
   width: 260px;           /* keep this */
   box-sizing: border-box;
   /* width: 100%; ← remove or comment out this line */
-}*/
-
+}
 
 img {
   max-width: 100%;
@@ -239,4 +238,21 @@ canvas {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.filter-controls {
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.filter-controls label {
+  margin-right: 0.5rem;
+}
+
+.filter-controls select {
+  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
