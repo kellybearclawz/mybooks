@@ -89,7 +89,7 @@ function generateChart(data, label, title, elementId, type ='doughnut') {
         }
       }
     
-    // Extract the unique labels (keys) from the counts object.
+  /*  // Extract the unique labels (keys) from the counts object.
     const chartLabels = Object.keys(counts);
     // Generate a background color for each label using the stringToCozyColor function.
     const backgroundColors = chartLabels.map(labelValue => stringToCozyColor(labelValue));
@@ -132,7 +132,8 @@ function generateChart(data, label, title, elementId, type ='doughnut') {
             responsive: true, // Make the chart responsive to container size changes.
             maintainAspectRatio: false // Allow the aspect ratio to change on resize.
         }
-    });
+    }*/
+    );
 }
 
 // Global array to store the filtered book data after loading.
