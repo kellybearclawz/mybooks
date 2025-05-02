@@ -24,7 +24,7 @@ function stringToCozyColor(str) {
  * and renders the chart in the specified canvas element.
  *
  * @param {object[]} data - An array of objects (e.g., book data).
- * @param {string} label - The key within each data object to group and count by (e.g., 'Sub-Genre').
+ * @param {string} label - The key within each data object to group and count by (e.g., 'Genre').
  * @param {string} title - The title to display above the chart.
  * @param {string} elementId - The ID of the HTML canvas element where the chart will be drawn.
  */
@@ -51,7 +51,7 @@ function generateChart(data, label, title, elementId) {
     new Chart(ctx, {
         type: 'doughnut', // Specify the chart type.
         data: {
-            labels: chartLabels, // Labels for each segment (e.g., different sub-genres).
+            labels: chartLabels, // Labels for each segment (e.g., different genres).
             datasets: [{
                 label: `${label} Distribution`, // Label for the dataset itself.
                 data: Object.values(counts), // The actual count data for each segment.
@@ -105,8 +105,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 book['Title'] &&
                 book['Exclusive Shelf'] === 'read'
             );
-            // Generate the initial chart based on 'Sub-Genre' distribution.
-            generateChart(globalBooks, 'Sub-Genre', 'Books by Sub-Genre', 'subgenreChart');
+            // Generate the initial chart based on 'Genre' distribution.
+            generateChart(globalBooks, 'Genre', 'Books by Genre', 'subgenreChart');
             // Optional: uncomment to display all read books initially
             // displayBooksByLabel('Exclusive Shelf', 'read'); // Or a more specific initial view
         }
@@ -117,7 +117,7 @@ window.addEventListener('DOMContentLoaded', () => {
  * Filters the global book list based on a label and value, then displays
  * the matching books as interactive cards in the designated container.
  *
- * @param {string} label - The key in the book objects to filter by (e.g., 'Sub-Genre').
+ * @param {string} label - The key in the book objects to filter by (e.g., 'Genre').
  * @param {string} value - The specific value to match for the given label (e.g., 'Fantasy').
  */
 function displayBooksByLabel(label, value) {
