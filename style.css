@@ -37,7 +37,7 @@ main {
   margin: auto;
 }
 
-.book-container {
+/*.book-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -52,6 +52,26 @@ main {
   display: flex;
   gap: 1rem;
   width: 300px;
+}*/
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.book-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 220px;
+  transition: transform 0.2s ease;
 }
 
 .book-card:hover {
@@ -70,7 +90,7 @@ main {
   margin-top: 1rem;
 }
 
-#bookshelf {
+/*#bookshelf {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -89,7 +109,7 @@ main {
   width: 260px;           /* keep this */
   box-sizing: border-box;
   /* width: 100%; ← remove or comment out this line */
-}
+}*/
 
 img {
   max-width: 100%;
