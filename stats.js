@@ -159,7 +159,7 @@ window.addEventListener('DOMContentLoaded', () => {
             });
             // Generate the initial chart based on 'Genre', 'Year Published', 'Publisher', and 'My Rating' distribution.
             generateChart(globalBooks, 'Genre', 'Books by Genre', 'subgenreChart');            
-            generateChart(globalBooks, 'Year Published', 'Books by Year Published', 'yearReadChart');
+            generateChart(globalBooks, 'Year Published', 'Books by Year Published', 'yearReadChart', 'bar');
             generateChart(globalBooks, 'Publisher', 'Books by Publisher', 'publisherChart');
             generateChart(globalBooks, 'My Rating', 'Books by My Rating', 'ratingChart');
 
