@@ -23,7 +23,8 @@ function cleanISBN(isbn13) {
  */
 async function renderBooks(data) {
   const shelf = document.getElementById('bookshelf');
-
+  shelf.innerHTML = ''; // clear the previous content before rendering the filtered books
+  
   // Group books by read year
   const booksByYear = {};
   for (const book of data) {
