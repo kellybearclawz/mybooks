@@ -105,8 +105,17 @@ window.addEventListener('DOMContentLoaded', () => {
                 book['Title'] &&
                 book['Exclusive Shelf'] === 'read'
             );
-            // Generate the initial chart based on 'Genre' distribution.
-            generateChart(globalBooks, 'Genre', 'Books by Genre', 'subgenreChart');
+            globalBooks.forEach(book => {
+              if (!book['Year Published'] || isNaN(book['Year Published'])) {
+                book['Year Published'] = 'Unknown';
+              }
+            });
+            // Generate the initial chart based on 'Genre', 'Year Published', 'Publisher', and 'My Rating' distribution.
+            generateChart(globalBooks, 'Genre', 'Books by Genre', 'subgenreChart');            
+            generateChart(globalBooks, 'Year Published', 'Books by Year Published', 'yearReadChart');
+            generateChart(globalBooks, 'Publisher', 'Books by Publisher', 'publisherChart');
+            generateChart(globalBooks, 'My Rating', 'Books by My Rating', 'ratingChart');
+
             // Optional: uncomment to display all read books initially
             // displayBooksByLabel('Exclusive Shelf', 'read'); // Or a more specific initial view
         }
