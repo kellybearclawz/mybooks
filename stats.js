@@ -19,7 +19,7 @@ function generateChart(data, label, title, elementId) {
     const labels = Object.keys(counts);
     const backgroundColors = labels.map(label => stringToCozyColor(label));
 
-    const chart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: labels,
@@ -43,8 +43,8 @@ function generateChart(data, label, title, elementId) {
                 legend: {
                     position: 'bottom',
                     onClick: function(event, legendItem) {
-                        const genre = legendItem.text;
-                        displayBooks(genre);
+                        const value = legendItem.text;
+                        displayBooksByLabel(label, value);
                     }
                 }
             },
@@ -54,61 +54,63 @@ function generateChart(data, label, title, elementId) {
     });
 }
 
+let globalBooks = [];
+
 window.addEventListener('DOMContentLoaded', () => {
     Papa.parse("goodreads_fully_enriched.csv", {
         download: true,
         header: true,
         complete: function(results) {
-            const data = results.data.filter(book => book['Title']); // small cleanup to skip blank rows
-            generateChart(data, 'Sub-Genre', 'Books by Sub-Genre', 'subgenreChart');
+            globalBooks = results.data.filter(book =>
+                book['Title'] &&
+                book['Exclusive Shelf'] === 'read'
+            );
+            generateChart(globalBooks, 'Sub-Genre', 'Books by Sub-Genre', 'subgenreChart');
         }
     });
 });
 
-async function displayBooks(genre) {
-    Papa.parse("goodreads_library_export.csv", {
-        download: true,
-        header: true,
-        complete: function(results) {
-            const booksContainer = document.getElementById('books-container');
-            booksContainer.innerHTML = ''; // Clear previous books
-            const filteredBooks = results.data.filter(book => book['Sub-Genre'] === genre);
+function displayBooksByLabel(label, value) {
+    const booksContainer = document.getElementById('books-container');
+    booksContainer.innerHTML = '';
 
-             // Add the subheader here
-            const subHeader = document.createElement('h2');
-            subHeader.className = 'sub-header';
-            subHeader.innerHTML = `📚 ${genre} — ${filteredBooks.length} books`;
-            booksContainer.appendChild(subHeader);
+    const filteredBooks = globalBooks.filter(book => book[label] === value);
 
-            if (filteredBooks.length === 0) {
-                booksContainer.innerHTML = `<p>No books found in the subgenre: ${genre}</p>`;
-                return;
-            }
+    const subHeader = document.createElement('h2');
+    subHeader.className = 'sub-header';
+    subHeader.innerHTML = `📚 ${value} — ${filteredBooks.length} book(s)`;
+    booksContainer.appendChild(subHeader);
 
-            const bookContainer = document.createElement('div');
-            bookContainer.className = 'book-container'; // same class as your bookshelf layout
+    if (filteredBooks.length === 0) {
+        booksContainer.innerHTML += `<p>No books found in: ${value}</p>`;
+        return;
+    }
 
-            filteredBooks.forEach((book, index) => {
-                const bookDiv = document.createElement('div');
-                const isbn = book.ISBN?.replace(/[^0-9Xx]/g, ''); // Clean up the ISBN just in case
-                const coverUrl = isbn 
-                    ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` 
-                    : 'https://kellybearclawz.github.io//mybooks/default-cover.jpg'; // fallback image
-                bookDiv.className = 'book-card fade-in';
-                bookDiv.style.animationDelay = `${index * 0.1}s`; // Stagger animation
-                bookDiv.innerHTML = `
-                  <img src="${coverUrl}" alt="Cover of ${book.Title}" />
-                  <div>
-                    <p><strong>${book.Title}</strong><br>
-                    by ${book.Author}<br>
-                    Meeting: ${book['Meeting Date']}<br>
-                    <p><a href="${book['Goodreads URL']}" target="_blank">Goodreads Link</a></p>
-                  </div>
-                `;
-                bookContainer.appendChild(bookDiv); // <- Add each book to bookContainer
-            });
+    const bookContainer = document.createElement('div');
+    bookContainer.className = 'book-container';
 
-            booksContainer.appendChild(bookContainer); // <- Finally add the whole bookContainer
-        }
+    filteredBooks.forEach((book, index) => {
+        const bookDiv = document.createElement('div');
+        const isbn = book.ISBN?.replace(/[^0-9Xx]/g, '');
+        const coverUrl = isbn
+            ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
+            : 'https://kellybearclawz.github.io/mybooks/default-cover.jpg';
+
+        const rating = parseInt(book['My Rating']) || 0;
+
+        bookDiv.className = 'book-card fade-in';
+        bookDiv.style.animationDelay = `${index * 0.1}s`;
+        bookDiv.innerHTML = `
+            <img src="${coverUrl}" alt="Cover of ${book.Title}" />
+            <div>
+                <p><strong>${book.Title}</strong><br>
+                by ${book.Author}<br>
+                Rating: ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</p>
+                <p><a href="${book['Goodreads URL']}" target="_blank">Goodreads Link</a></p>
+            </div>
+        `;
+        bookContainer.appendChild(bookDiv);
     });
+
+    booksContainer.appendChild(bookContainer);
 }
