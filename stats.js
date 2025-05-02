@@ -28,11 +28,25 @@ function stringToCozyColor(str) {
  * @param {string} title - The title to display above the chart.
  * @param {string} elementId - The ID of the HTML canvas element where the chart will be drawn.
  */
-function generateChart(data, label, title, elementId) {
+function generateChart(data, label, title, elementId, type ='doughnut') {
     // Get the 2D rendering context for the specified canvas element.
     const ctx = document.getElementById(elementId).getContext('2d');
     // Object to store the counts of each unique value for the given label.
     const counts = {};
+    
+    // Group small values into "Other" (e.g., < 3 books)
+    const groupedCounts = {};
+    let otherCount = 0;
+    Object.entries(counts).forEach(([key, count]) => {
+        if (count < 3) {
+            otherCount += count;
+            } else {
+              groupedCounts[key] = count;
+            }
+    });
+    if (otherCount > 0) {
+        groupedCounts['Other'] = otherCount;
+    }
 
     // Iterate over the data array to count occurrences.
     data.forEach(item => {
@@ -42,6 +56,39 @@ function generateChart(data, label, title, elementId) {
         counts[value] = (counts[value] || 0) + 1;
     });
 
+    const labels = Object.keys(groupedCounts);
+    const dataValues = Object.values(groupedCounts);
+    const backgroundColors = labels.map(label => stringToCozyColor(label));
+
+     new Chart(ctx, {
+        type: type,
+        data: {
+          labels: labels,
+          datasets: [{
+            label: `${label} Distribution`,
+            data: dataValues,
+            backgroundColor: backgroundColors,
+            borderColor: '#ffffff',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: title,
+              font: { size: 20 }
+            },
+            legend: {
+              position: 'bottom',
+              onClick: (e, legendItem) => displayBooksByLabel(label, legendItem.text)
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      }
+    
     // Extract the unique labels (keys) from the counts object.
     const chartLabels = Object.keys(counts);
     // Generate a background color for each label using the stringToCozyColor function.
