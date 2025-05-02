@@ -61,6 +61,9 @@ async function renderBooks(data) {
       bookDiv.className = 'book-card fade-in';
       bookDiv.style.animationDelay = `${index * 0.1}s`;
 
+      const ratingStars = '★'.repeat(book['My Rating']) + '☆'.repeat(5 - book['My Rating']);
+      const goodreadsUrl = book['Goodreads URL'] ? `<a href="${book['Goodreads URL']}" target="_blank">Goodreads Link</a></p>` : '';
+
       bookDiv.innerHTML = `
         <img src="${coverUrl}" alt="Cover of ${book.Title}" onerror="this.onerror=null;this.src='https://kellybearclawz.github.io//mybooks/default-cover.jpg';" />
         <div>
@@ -68,7 +71,7 @@ async function renderBooks(data) {
           by ${book.Author}<br>
           Date Read: ${book['Date Read']}<br>
           Rating: ${'★'.repeat(book['My Rating'])}${'☆'.repeat(5 - book['My Rating'])}
-          <p><a href="${book['Goodreads URL']}" target="_blank">Goodreads Link</a></p>
+          ${goodreadsUrl}
         </div>
       `;
       bookContainer.appendChild(bookDiv);
