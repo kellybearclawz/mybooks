@@ -276,3 +276,12 @@ canvas {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
+
+#searchBox {
+  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 250px;
+  margin-left: 0.5rem;
+}
