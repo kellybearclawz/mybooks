@@ -107,6 +107,19 @@ function setupRatingFilter(cleanedData) {
     });
 }
 
+function setupSearchFilter(cleanedData) {
+  const searchBox = document.getElementById('searchBox');
+  searchBox.addEventListener('input', () => {
+    const searchTerm = searchBox.value.toLowerCase();
+    const filtered = cleanedData.filter(book => {
+      const title = book.Title?.toLowerCase() || '';
+      const author = book.Author?.toLowerCase() || '';
+      return title.includes(searchTerm) || author.includes(searchTerm);
+    });
+    renderBooks(filtered);
+  });
+}
+
 // Parse the CSV file and render the books
 Papa.parse("goodreads_fully_enriched.csv", {
   download: true,
@@ -117,7 +130,9 @@ Papa.parse("goodreads_fully_enriched.csv", {
       book['Date Read'] &&
       book['Exclusive Shelf'] === 'read'
     );
-    setupRatingFilter(cleanedData); // <- setup dropdown listener
-    renderBooks(cleanedData);       // <- initial render
+
+    setupRatingFilter(cleanedData);
+    setupSearchFilter(cleanedData);
+    renderBooks(cleanedData);
   }
 });
