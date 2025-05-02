@@ -285,3 +285,21 @@ canvas {
   width: 250px;
   margin-left: 0.5rem;
 }
+
+#resetButton {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #f4e4d4;
+  color: #5e4b3c;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 1rem auto;
+  display: block;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#resetButton:hover {
+  background-color: #fce8d9;
+}
+
