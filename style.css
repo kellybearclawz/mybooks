@@ -14,7 +14,6 @@ body {
     text-align: center;
 }
 
-
 nav {
   background-color: #f4e4d4;
   padding: 1rem;
@@ -121,10 +120,10 @@ main {
    width: 100%;
 }
 
-img {
+/*img {
   max-width: 100%;
   height: auto;
-}
+}*/
 
 @media (max-width: 600px) {
   #bookshelf {
@@ -132,11 +131,7 @@ img {
     align-items: center;
   }
 
- /* #bookshelf div {
-   
-  }*/
-
-  nav {
+ nav {
     flex-direction: row;
     align-items: center;
   }
