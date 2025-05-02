@@ -75,16 +75,29 @@ async function renderBooks(data) {
   shelf.appendChild(topLink);
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  Papa.parse("goodreads_fully_enriched.csv", {
-    download: true,
-    header: true,
-    complete: function(results) {
-     const cleanedData = results.data.filter(book => 
-      book['Title'] && 
-      book['Date Read']
-);
-      renderBooks(cleanedData); // Call renderBooks here!
+function setupRatingFilter(cleanedData) {
+  const ratingSelect = document.getElementById('ratingFilter');
+  ratingSelect.addEventListener('change', () => {
+    const minRating = parseInt(ratingSelect.value, 10);
+    const filtered = cleanedData.filter(book => parseFloat(book['My Rating']) >= minRating);
+    renderBooks(filtered);
+  });
+}
+
+Papa.parse("goodreads_fully_enriched.csv", {
+  download: true,
+  header: true,
+  complete: function(results) {
+    const cleanedData = results.data.filter(book =>
+      book['Title'] &&
+      book['Date Read'] &&
+      book['Exclusive Shelf'] === 'read'
+    );
+    setupRatingFilter(cleanedData); // <- setup dropdown listener
+    renderBooks(cleanedData);       // <- initial render
+  }
+});
+
 
     }
   });
