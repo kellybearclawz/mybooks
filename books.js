@@ -98,5 +98,3 @@ Papa.parse("goodreads_fully_enriched.csv", {
     renderBooks(cleanedData);       // <- initial render
   }
 });
-  });
-});
