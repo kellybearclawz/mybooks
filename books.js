@@ -51,7 +51,8 @@ async function renderBooks(data) {
         <div>
           <p><strong>${book.Title}</strong><br>
           by ${book.Author}<br>
-          Date Read: ${book['Date Read']}</p>
+          Date Read: ${book['Date Read']}<br>
+          Rating: ${'★'.repeat(book['My Rating'])}${'☆'.repeat(5 - book['My Rating'])}
           <p><a href="${book['Goodreads URL']}" target="_blank">Goodreads Link</a></p>
         </div>
       `;
