@@ -30,7 +30,12 @@ function stringToCozyColor(str) {
  */
 function generateChart(data, label, title, elementId, type ='doughnut') {
     // Get the 2D rendering context for the specified canvas element.
-    const ctx = document.getElementById(elementId).getContext('2d');
+    const canvas = document.getElementById(elementId);
+    if (!canvas) return console.warn(`Canvas element #${elementId} not found`);
+    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById(elementId);
+    
+
     // Object to store the counts of each unique value for the given label.
    const counts = {};
 
