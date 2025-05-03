@@ -32,21 +32,28 @@ function generateChart(data, label, title, elementId, type ='doughnut') {
     // Get the 2D rendering context for the specified canvas element.
     const ctx = document.getElementById(elementId).getContext('2d');
     // Object to store the counts of each unique value for the given label.
-    const counts = {};
-    
-    // Group small values into "Other" (e.g., < 3 books)
-    const groupedCounts = {};
-    let otherCount = 0;
-    Object.entries(counts).forEach(([key, count]) => {
-        if (count < 3) {
-            otherCount += count;
-            } else {
-              groupedCounts[key] = count;
-            }
-    });
-    if (otherCount > 0) {
-        groupedCounts['Other'] = otherCount;
+   const counts = {};
+
+// First, count the values
+data.forEach(item => {
+    const value = item[label] || 'Unknown';
+    counts[value] = (counts[value] || 0) + 1;
+});
+
+// Now group the small counts into "Other"
+const groupedCounts = {};
+let otherCount = 0;
+Object.entries(counts).forEach(([key, count]) => {
+    if (count < 3) {
+        otherCount += count;
+    } else {
+        groupedCounts[key] = count;
     }
+});
+if (otherCount > 0) {
+    groupedCounts['Other'] = otherCount;
+}
+
 
     // Iterate over the data array to count occurrences.
     data.forEach(item => {
