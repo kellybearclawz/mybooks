@@ -23,38 +23,25 @@
     <!--<a href="about.html">About</a>-->
   </nav>
   
-  <main>
-    
-    <h1>Genre</h1>
-      <div class="chart-container">
-        <canvas id="subgenreChart"></canvas>
-      </div>
-    <div id="books-container"></div>
+ <header> <h1 class="main-title">My Reading Dashboard</h1> </header>
 
-    <h1>Year Read</h1>
-      <div class="chart-container">
-        <canvas id="yearReadChart"></canvas>
-      </div>
-    <div id="books-container"></div>
-    
-    <h1>Published Date</h1>
-      <div class="chart-container">
-        <canvas id="publisherChart"></canvas>
-      </div>
-    <div id="books-container"></div>
-    
-    <h1>My Ratings</h1>
-      <div class="chart-container">
-        <canvas id="ratingChart"></canvas>
-      </div>
-    <div id="books-container"></div>
+    <main>
+        <section class="charts-section"> <h2>Reading Statistics</h2> <div class="charts-grid"> <div class="chart-container"> <canvas id="genreChart"></canvas>
+                </div>
+                <div class="chart-container"> <canvas id="yearPublishedChart"></canvas>
+                </div>
+                <div class="chart-container"> <canvas id="publisherChart"></canvas>
+                </div>
+                <div class="chart-container"> <canvas id="ratingChart"></canvas>
+                </div>
+            </div>
+        </section>
 
+        <section id="books-display-section"> <div id="books-container">
+                </div>
+        </section>
+    </main>
 
-<div class="filter-controls">
-  <button id="resetButton">🔄 Reset Filters</button>
-</div>
-
-  </main>
   
 </body>
 </html>
